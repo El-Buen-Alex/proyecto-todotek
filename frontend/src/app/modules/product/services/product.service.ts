@@ -46,6 +46,32 @@ export class ProductService {
             )
         );
 	}
+
+
+	edit(productId:number) : Observable<any>{
+		return this._httpClient.get(`${this.route}/edit/${productId}`).pipe(
+            catchError(
+                err=>{
+                    this.notify.showSnackAlert('Ha ocurrido un error', 'error')
+                    return err;
+                }
+            )
+        );
+	}
 	
+
+	update(productId:number, name:string, categoryId:number) : Observable<any>{
+		return this._httpClient.put(`${this.route}/${productId}`, {
+			'name':name,
+			'category_id':categoryId
+		}).pipe(
+            catchError(
+                err=>{
+                    this.notify.showSnackAlert('Ha ocurrido un error', 'error')
+                    return err;
+                }
+            )
+        );
+	}
 
 }

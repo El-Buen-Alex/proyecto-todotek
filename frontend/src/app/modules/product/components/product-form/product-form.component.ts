@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroupDirective, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { CategoryResponse } from 'src/app/shared/interface/product.interface';
+import { CategoryResponse, ProductResponse } from 'src/app/shared/interface/product.interface';
 
 @Component({
   selector: 'app-product-form',
@@ -10,6 +10,7 @@ import { CategoryResponse } from 'src/app/shared/interface/product.interface';
 export class ProductFormComponent implements OnInit {
 
   @Input() categories:CategoryResponse[]=[]
+  @Input() currentProduct?:ProductResponse
   mainForm:UntypedFormGroup;
   fatherForm!:UntypedFormGroup;
   constructor(
@@ -23,6 +24,12 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.currentProduct){
+      this.mainForm.patchValue({
+        'name':this.currentProduct.name,
+        'category_id':this.currentProduct.category_id
+      })
+    }
     this.fatherForm=this._ctrlForm.form;
     this.fatherForm.addControl('product', this.mainForm)
   }

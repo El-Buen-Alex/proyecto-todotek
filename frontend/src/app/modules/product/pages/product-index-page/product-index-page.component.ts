@@ -6,6 +6,7 @@ import { ProductCreateModalComponent } from '../../modals/product-create-modal/p
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { ProductEditModalComponent } from '../../modals/product-edit-modal/product-edit-modal.component';
 
 @Component({
   selector: 'app-product-index-page',
@@ -100,7 +101,20 @@ export class ProductIndexPageComponent implements OnInit {
   }
 
   openEdit(product:ProductResponse){
+    const dialogRef = this._dialog.open( ProductEditModalComponent, {
+			width : '80%',
+      maxWidth:'450px',
+			disableClose : true,
+      data:{
+        productId:product.id
+      }
+		});
 
+		dialogRef.componentInstance.onUpdated.subscribe(( result ) => {
+      const index=this.products.findIndex(current=>current.id===result.id)
+			this.products[index]=result;
+      this.table.dataSource.data=this.products
+		});
   }
 
   nextPage( event:any ) {

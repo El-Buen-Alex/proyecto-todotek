@@ -1,0 +1,29 @@
+<div class="page-loading" *ngIf="modal.loading; else noLoading">
+	<mat-spinner></mat-spinner>
+</div>
+
+<ng-template #noLoading> 
+	<div class="page-error" *ngIf="modal.error; else noError">
+		<div class="error-container">
+			<button mat-mini-fab color="warn" (click)="getInitData()">
+				<mat-icon>refresh</mat-icon>
+				</button>
+			<p class="message-error">No se pudo obtener el producto a editar</p>
+		</div>
+
+	</div>
+	<ng-template #noError>
+		<div [formGroup]="mainForm">
+			<app-product-form
+				[categories]="categories"
+                [currentProduct]="currentProduct"
+			></app-product-form>
+			<div class="actions">
+				<button mat-raised-button  
+					(click)="update()"
+					[disabled]="mainForm.invalid" color="accent">
+					GUARDAR
+				</button>
+			</div>
+		</div>
+	</ng-template>

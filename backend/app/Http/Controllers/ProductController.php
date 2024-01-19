@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
@@ -83,9 +84,26 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function edit($id, Request $request)
     {
-        //
+        try{
+            $product=Product::
+                with(['category'])
+                ->find($id);
+            if(!$product){
+                throw new Exception('No se logró encontrar el producto');
+            }
+
+            $categories=Category::all();
+
+            $this->apiResponse->addData('categories', $categories);
+            $this->apiResponse->addData('product', $product);
+
+        }catch(Exception $e){
+            DB::rollBack();
+            $this->apiResponse->addErrorMessage('Ha ocurrido un error', $e->getMessage());
+        }
+        return $this->result();
     }
 
     /**
@@ -119,7 +137,12 @@ class ProductController extends Controller
                 'category_id'=>$request->category_id
             ];
 
-            $product=Product::find($id);
+            $product=Product::
+                with(['category'])
+                ->find($id);
+            if(!$product){
+                throw new Exception('No se logró encontrar el producto');
+            }
             $product->update($inputs);
             $product->refresh();
 

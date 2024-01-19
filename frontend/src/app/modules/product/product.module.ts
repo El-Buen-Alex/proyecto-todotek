@@ -5,6 +5,7 @@ import { ProductRoutingModule } from './product.routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductCreateModalComponent } from './modals/product-create-modal/product-create-modal.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { ProductEditModalComponent } from './modals/product-edit-modal/product-edit-modal.component';
 
 
 
@@ -12,7 +13,8 @@ import { ProductFormComponent } from './components/product-form/product-form.com
   declarations: [
     ProductIndexPageComponent,
     ProductCreateModalComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductEditModalComponent,
   ],
   imports: [
     CommonModule,

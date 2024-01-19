@@ -22,6 +22,11 @@ Route::group([
 ], function() {
     Route::get('', 'index');
 } ) ;
-
+Route::group([
+    'controller'=>ProductController::class,
+    'prefix'=>'product'
+],function(){
+    Route::get('edit/{id}', 'edit')->where(['id' => '[0-9]+']);
+});
 Route::apiResource('product', ProductController::class);
 
