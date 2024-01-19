@@ -5,7 +5,12 @@ import { ModalLoadingComponent } from './components/modal-loading/modal-loading.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
+import {MatButtonModule} from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -18,12 +23,22 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatDialogModule,
   ],
   exports:[
+    MatDialogModule,
+    MatSnackBarModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
   ]
 })
 export class SharedModule { }

@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+.page-loading, .page-error{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.page-error{
+    .error-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+
+.empty-data {
+	width: 100%;
+	.container-empty-data{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+	img {
+		width: 180px;
+		height: 120px;
+	}
+	mat-icon {
+		color: black;
+	}
+	p {
+		color: black;
+	}
+}

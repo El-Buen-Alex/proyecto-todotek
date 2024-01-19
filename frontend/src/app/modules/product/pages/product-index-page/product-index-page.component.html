@@ -1,1 +1,36 @@
-<p>product-index-page works!</p>
+<mat-toolbar class="page-toolbar">
+	<span>{{ page.title }}</span>
+	<button mat-raised-button class="_ml" color="primary" >
+		<mat-icon>add_circle_outline</mat-icon> {{ 'Agregar' | uppercase }}
+	</button>
+</mat-toolbar>
+
+<div class="page-loading" *ngIf="page.loading; else noLoading">
+	<mat-spinner></mat-spinner>
+</div>
+
+<ng-template #noLoading> 
+	<div class="page-error" *ngIf="page.error; else noError">
+		<div class="error-container">
+			<button mat-mini-fab color="warn" (click)="getInitData()">
+				<mat-icon>refresh</mat-icon>
+				</button>
+			<p class="message-error">No se pudo obtener los productos</p>
+		</div>
+
+	</div>
+	<ng-template #noError>
+		<div class="empty-data" *ngIf="products.length===0; else noEmpty">
+			<div class="empty-data">
+				<div class="container-empty-data">
+					<img src="assets/imgs/no-data.png">
+					<p>No existe productos a mostrar</p>
+				</div>
+			</div>
+			
+		</div>
+		<ng-template #noEmpty> 
+
+		</ng-template>
+	</ng-template>
+</ng-template>
