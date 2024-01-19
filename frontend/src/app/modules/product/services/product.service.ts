@@ -74,4 +74,15 @@ export class ProductService {
         );
 	}
 
+	delete(productId:number) : Observable<any>{
+		return this._httpClient.delete(`${this.route}/${productId}`).pipe(
+            catchError(
+                err=>{
+                    this.notify.showSnackAlert('Ha ocurrido un error', 'error')
+                    return err;
+                }
+            )
+        );
+	}
+
 }

@@ -77,6 +77,9 @@ export class ProductCreateModalComponent implements OnInit {
             this.dialogRef.close();
           }
           this._notifyService.closeModalLoading();
+        },
+        onError=>{
+          this._notifyService.closeModalLoading();
         }
       )
   }

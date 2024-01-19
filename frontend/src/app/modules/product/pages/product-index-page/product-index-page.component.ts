@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ProductEditModalComponent } from '../../modals/product-edit-modal/product-edit-modal.component';
+import { ProductDeleteModalComponent } from '../../modals/product-delete-modal/product-delete-modal.component';
 
 @Component({
   selector: 'app-product-index-page',
@@ -97,7 +98,24 @@ export class ProductIndexPageComponent implements OnInit {
   }
 
   openDelete(product:ProductResponse){
+    const dialogRef = this._dialog.open( ProductDeleteModalComponent, {
+			width : '80%',
+      maxWidth:'300px',
+			disableClose : true,
+      data:{
+        currentProduct:product
+      }
+		});
 
+		dialogRef.componentInstance.onDeleted.subscribe(( result ) => {
+      const index=this.products.findIndex(current=>current.id===result.id)
+			this.products.splice(index, 1)
+      if(this.products.length===0 ){
+        this.getInitData();
+      }else{
+        this.table.dataSource.data=this.products
+      }
+		});
   }
 
   openEdit(product:ProductResponse){

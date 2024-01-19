@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductCreateModalComponent } from './modals/product-create-modal/product-create-modal.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductEditModalComponent } from './modals/product-edit-modal/product-edit-modal.component';
+import { ProductDeleteModalComponent } from './modals/product-delete-modal/product-delete-modal.component';
 
 
 
@@ -15,6 +16,7 @@ import { ProductEditModalComponent } from './modals/product-edit-modal/product-e
     ProductCreateModalComponent,
     ProductFormComponent,
     ProductEditModalComponent,
+    ProductDeleteModalComponent,
   ],
   imports: [
     CommonModule,
