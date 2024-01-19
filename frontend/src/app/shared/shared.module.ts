@@ -7,11 +7,12 @@ import { RouterModule } from '@angular/router';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     SnackbarComponent,
@@ -28,6 +29,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ],
   exports:[
     MatDialogModule,
@@ -39,6 +43,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ]
 })
 export class SharedModule { }

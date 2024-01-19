@@ -1,6 +1,6 @@
 <mat-toolbar class="page-toolbar">
 	<span>{{ page.title }}</span>
-	<button mat-raised-button class="_ml" color="primary" >
+	<button mat-raised-button class="_ml" color="primary" (click)="openCreate()" >
 		<mat-icon>add_circle_outline</mat-icon> {{ 'Agregar' | uppercase }}
 	</button>
 </mat-toolbar>

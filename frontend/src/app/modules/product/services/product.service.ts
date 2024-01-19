@@ -27,6 +27,20 @@ export class ProductService {
             )
         );
 	}
+
+	store(name:string, categoryId:number) : Observable<any>{
+		return this._httpClient.post(this.route, {
+			'name':name,
+			'category_id':categoryId
+		}).pipe(
+            catchError(
+                err=>{
+                    this.notify.showSnackAlert('Ha ocurrido un error', 'error')
+                    return err;
+                }
+            )
+        );
+	}
 	
 
 }

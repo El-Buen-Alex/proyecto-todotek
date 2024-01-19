@@ -1,0 +1,16 @@
+<div [formGroup]="mainForm" class="main-form">
+    <div class="main-control">
+        <mat-form-field >
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Ex. Pizza" formControlName="name">
+        </mat-form-field>
+    </div>
+    <div class="main-control">
+        <mat-form-field>
+            <mat-label>Categoria</mat-label>
+            <mat-select formControlName ="category_id" >
+              <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+</div>

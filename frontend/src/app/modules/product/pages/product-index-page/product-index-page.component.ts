@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { NotifyService } from 'src/app/shared/services/notify.service';
 import { ProductResponse } from 'src/app/shared/interface/product.interface';
+import { ProductCreateModalComponent } from '../../modals/product-create-modal/product-create-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-index-page',
@@ -20,6 +22,7 @@ export class ProductIndexPageComponent implements OnInit {
   constructor(
     private _productService:ProductService,
     private _notifyService:NotifyService,
+    private _dialog:MatDialog,
   ) { 
     this.page={
       loading:true,
@@ -42,7 +45,7 @@ export class ProductIndexPageComponent implements OnInit {
           this.products=result.data.products
         }else{  
           this.page.error=true;
-          this._notifyService.showMessage(result.message);
+          this._notifyService.showSingleMessage(result.message);
         }
         this.page.loading=false;
       },
@@ -50,6 +53,18 @@ export class ProductIndexPageComponent implements OnInit {
         this.page.error=true;
       }
     )
+  }
+
+  openCreate(){
+    const dialogRef = this._dialog.open( ProductCreateModalComponent, {
+			width : '80%',
+      maxWidth:'450px',
+			disableClose : true,
+		});
+
+		dialogRef.componentInstance.onCreated.subscribe(( result ) => {
+			this.products.unshift(result)
+		});
   }
 
 }
