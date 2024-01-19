@@ -13,6 +13,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     SnackbarComponent,
@@ -32,6 +34,8 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   exports:[
     MatDialogModule,
@@ -46,6 +50,8 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
   ]
 })
 export class SharedModule { }

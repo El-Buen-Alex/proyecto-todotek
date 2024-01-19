@@ -15,16 +15,19 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try{
+            $q=[
+                'take'=>$request->has('take')?$request->take:10,
+            ];
             $products=Product::
                 with([
                     'category'
                 ])
-                ->get();
+                ->paginate($q['take']);
 
-            $this->apiResponse->addData('products', $products);
+            $this->apiResponse->addData('data', $products);
         }catch(Exception $e){
             $this->apiResponse->addErrorMessage('Ha ocurrido un error', $e->getMessage());
         }

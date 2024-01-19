@@ -17,8 +17,13 @@ export class ProductService {
 	) {
 		this.route=`${ENV.apiUrl}/product`;
 	}
-	getProducts(  ) : Observable<any> {
-		return this._httpClient.get(this.route).pipe(
+	getProducts( pageIndex:number=1, count=10 ) : Observable<any> {
+		return this._httpClient.get(this.route, {
+			params:{
+				'page':pageIndex,
+				'take':count
+			}
+		}).pipe(
             catchError(
                 err=>{
                     this.notify.showSnackAlert('Ha ocurrido un error', 'error')
