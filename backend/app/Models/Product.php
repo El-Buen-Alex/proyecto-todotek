@@ -11,8 +11,13 @@ class Product extends Model
     use HasFactory;
     use SoftDeletes;
 
+
+    protected $fillable=[
+        'name','category_id'
+    ];
+
     public function category(){
-        return $this->hasOne(Category::class);
+        return $this->hasOne(Category::class, 'id', 'category_id');
     }
 
     public function media(){
